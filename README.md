@@ -1,24 +1,40 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                   |
+|--------------------|---------------------|---------------------------|
+| name               | string              | null: false               |
+| email              | string              | null: false, unique: true |
+| encrypted_password | string              | null: false               |
+| birth_id           | date                | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+has_one :augury
+has_one :result
 
-* Configuration
+## augury table
 
-* Database creation
+| Column             | Type                | Options                   |
+|--------------------|---------------------|---------------------------|
+| nickname           | string              | null: false               |
+| sign               | integer             | null: false               |
+| birth_id           | date                | null: false               |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+belongs_to :user
+has_one :result
 
-* Services (job queues, cache servers, search engines, etc.)
+## result table
 
-* Deployment instructions
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| user        | references | null: false, foreign_key: true |
+| augury      | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+belongs_to :user
+belongs_to :augury
