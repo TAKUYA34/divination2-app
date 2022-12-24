@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2022_12_24_091053) do
     t.index ["user_id"], name: "index_auguries_on_user_id"
   end
 
+  create_table "results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "augury_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["augury_id"], name: "index_results_on_augury_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -37,4 +46,6 @@ ActiveRecord::Schema.define(version: 2022_12_24_091053) do
   end
 
   add_foreign_key "auguries", "users"
+  add_foreign_key "results", "auguries"
+  add_foreign_key "results", "users"
 end
