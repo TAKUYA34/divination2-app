@@ -208,7 +208,6 @@ li {
 
 .first-view{
   height: 70vh;
-  text-shadow: 0 0 5px rgb(0 0 0 / 90%);
   position: relative;
 }
 
@@ -223,7 +222,7 @@ li {
   position: absolute;
   top: 40px;
   left: 30px;
-  color: rgba(84, 50, 44, 32);
+  color: burlywood;
   -webkit-text-stroke: 1px #FFF;
   stroke-linejoin: 1px #FFF;  padding: 20vh 20vw;
 }
