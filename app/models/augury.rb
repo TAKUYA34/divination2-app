@@ -1,0 +1,2 @@
+class Augury < ApplicationRecord
+end
