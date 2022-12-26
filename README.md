@@ -1,40 +1,72 @@
-# DB 設計
+# アプリケーション名
+DIVINATION APP
 
-## users table
+# アプリケーション概要
+ユーザーの運勢を叶えるアプリ
 
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| name               | string              | null: false               |
-| email              | string              | null: false, unique: true |
-| encrypted_password | string              | null: false               |
-| birth_id           | date                | null: false               |
+# URL
+https://divinationapp2-38247.onrender.com
 
-### Association
+# テスト用アカウント
+・メールアドレス：sample@sample.com
+・パスワード：adgjm234
 
-has_one :augury
-has_one :result
+# 利用方法
+1.トップページ（一覧ページ）のヘッダーからログインをする。
+2.トップページ（一覧ページ）の左側の占うボタンをクリックする。
+3.名前、星座、生年月日を入力し、占ってみるボタンをクリックする。
+4.占い結果を見てみるボタンをクリックする。
+5.占い結果が表示され、トップページに戻る。
 
-## augury table
+# アプリアプリケーションを作成した背景
+テックキャンプで学んだ事を活かし、自分が作れるアプリをピックアップして占いアプリケーションを開発しました。
 
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| nickname           | string              | null: false               |
-| sign               | integer             | null: false               |
-| birth_id           | date                | null: false               |
+# 洗い出した要件定義
+https://docs.google.com/spreadsheets/d/1HTS4ppwlEYU9MtuZ6kOJO5PQbNHTSsRcefQcstmA9RA/edit#gid=982722306
 
-### Association
+# 実装した機能についての画像やGIFおよびその説明
+一覧機能は、新規登録、ログインがあり、占うをクリックすると占い投稿機能に遷移できます。
+[![一覧機能は、新規登録、ログインがあり、占うをクリックすると占い投稿機能に遷移できます。](https://i.gyazo.com/2380a1c1242c7a85c6b78e2ac73d8927.gif)](https://gyazo.com/2380a1c1242c7a85c6b78e2ac73d8927)
 
-belongs_to :user
-has_one :result
+投稿機能は、必要な情報を入力することで、詳細機能に遷移できます。
+[![投稿機能は、必要な情報を入力することで、詳細機能に遷移できます。](https://i.gyazo.com/fea4b2d329a96d2e22a0e9636a5dbf5c.gif)](https://gyazo.com/fea4b2d329a96d2e22a0e9636a5dbf5c)
 
-## result table
+詳細機能は、投稿が完了して結果を見るボタンを押すと、結果ページに遷移できます。
+[![詳細機能は、投稿が完了して結果を見るボタンを押すと、結果ページに遷移できます。](https://i.gyazo.com/b0fba4a47010352093ef128acd45c7b2.gif)](https://gyazo.com/b0fba4a47010352093ef128acd45c7b2)
 
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| user        | references | null: false, foreign_key: true |
-| augury      | references | null: false, foreign_key: true |
+# データベース設計
+https://gyazo.com/ca58e3d02cbee7653e7a580979a67f22
 
-### Association
+# 画面遷移図
+https://gyazo.com/8eccf7ebdc0f71211f8b56d214f0dfbb
 
-belongs_to :user
-belongs_to :augury
+# 開発環境
+・フロントエンド
+・バックエンド
+・インフラ
+・テスト
+・テキストエディタ
+
+# ローカルでの動作方法
+以下のコマンドを順に実行
+
+% git clone github.com/TAKUYA34/divination2-app
+
+% cd divination2-app
+
+% bundle install
+
+% yarn install
+
+# 工夫したポイント
+気軽に占いが出来るイメージで、作業しました。
+トップページの実装する際は、第一印象が大事だと感じ、見やすい様意識して制作しました。
+使い勝手を図るため、一つ一つ動作を確認しながらコードを入力し、一つずつ実装しました。
+その結果、大まかなエラーに遭遇する事なく対処できました。
+
+# 苦労した点
+結果機能を実装する際に思うように実装出来なかった事です。
+条件分岐が多いので最初はif文で計算式を入力しました。
+しかし、どう入力していけばいいのか全く分からず、公式やネットで検索しても分かりませんでした。
+もう一度テックキャンプのカリキュラムを見返し、条件分岐を調べると複数の条件分岐にはcase文がある事を知り、カリキュラムを参考にして実装することができました。
+カリキュラムを読み返す事が凄く大事な事に気づきました。
