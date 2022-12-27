@@ -17,6 +17,8 @@
         <% if user_signed_in? %>
           <div class="nav-list">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-new" %>
+            <%= link_to current_user.name, root_path, class: "nav-login" %>
+
           </div>
         <% else %>
           <div class="nav-list">
